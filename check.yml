@@ -17,6 +17,14 @@
       ansible.builtin.debug:
         msg: "Hostname: {{ ansible_nodename }} | Machine: {{ ansible_machine }}"
 
+    - name: CPU and memory
+      ansible.builtin.debug:
+        msg: "CPU cores: {{ ansible_processor_vcpus }} | Total Memory: {{ ansible_memtotal_mb }} MB"
+
+    - name: Disk information
+      ansible.builtin.debug:
+        msg: "Total Disk Size: {{ ansible_devices.sda.size if 'sda' in ansible_devices else 'N/A' }}"
+
     - name: Full relevant facts
       ansible.builtin.debug:
         msg:
@@ -27,3 +35,7 @@
           architecture: "{{ ansible_architecture }}"
           hostname: "{{ ansible_nodename }}"
           machine: "{{ ansible_machine }}"
+          cpu_cores: "{{ ansible_processor_vcpus }}"
+          total_memory_mb: "{{ ansible_memtotal_mb }}"
+          total_disk_size: "{{ ansible_devices.sda.size if 'sda' in ansible_devices else 'N/A' }}"
+        

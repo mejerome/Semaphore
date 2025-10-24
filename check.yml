@@ -19,7 +19,7 @@
 
     - name: Full relevant facts
       ansible.builtin.debug:
-        var:
+        msg:
           distribution: "{{ ansible_distribution }}"
           version: "{{ ansible_distribution_version }}"
           os_family: "{{ ansible_os_family }}"
